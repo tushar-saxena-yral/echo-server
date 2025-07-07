@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: create a branch
-      uses: neondatabase/create-branch-action@v5
+      uses: neondatabase/create-branch-action@v6
       id: create-branch
       with:
         project_id: ${{ vars.NEON_PROJECT_ID }}
