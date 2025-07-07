@@ -1,0 +1,26 @@
+name: Test if output is revealed
+on: workflow_dispatch
+
+permissions:
+  deployments: write
+  pull-requests: read
+
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: create a branch
+      uses: neondatabase/create-branch-action@v5
+      id: create-branch
+      with:
+        project_id: ${{ vars.NEON_PROJECT_ID }}
+        branch_name: throaway_branch
+        api_key: ${{ secrets.NEON_API_KEY }}
+
+    - name: Use the output
+      run: |
+        echo "Not even using the output"
+      env:
+        CONNECTION_STRING: ${{ steps.create-branch.outputs.db_url }}
+
